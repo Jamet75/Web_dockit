@@ -81,6 +81,12 @@ html, body {
   width: 345px;
 }
 
+.container {
+  width: auto;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
 .container h1 {
   text-align: center;
   margin: 40px;
@@ -89,19 +95,55 @@ html, body {
   margin-top: 30px;
   margin-bottom: 20px;
 }
+
 [class*="col-"] {
   text-align: center;
   margin: 20px 0px;
 }
 
-
 /* foooooooter */
 .footer {
   margin-top: 20px;
-  background-color: #392ED8;
+  background-color: #3A5AA2;
   position: relative;
   height: 150px;
 }
 .footer h2 {
-  font-size: 15px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.store {
+  position: absolute;
+  width: 500px;
+  vertical-align: middle;
+  bottom: 0;
+  left: 20px;
+  margin-bottom: 10px;
+}
+
+.social {
+  position: absolute;
+  width: 300px;
+  vertical-align: middle;
+  right: 10px;
+  bottom: 0;
+  margin-bottom: 10px;
+}
+
+.facebook {
+ height: 75px;
+ width: 75px;
+}
+
+.instagram {
+  height: 75px;
+  width: 75px;
+}
+
+.twitter {
+  height: 75px;
+  width: 75px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
