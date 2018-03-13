@@ -22,15 +22,61 @@
 <!-- <input type="range" value="15" max="50" min="0" step="5"> -->
 
 <div class="form-style-10">
-<h2>Remplissez ce formulaire pour trouver la place de port adaptée à votre besoin ! </h2>
+<h2>Remplissez ce formulaire pour trouver la place de port adaptée à votre besoin !</h2>
+<div class="formulaire">
+  <button onclick="document.getElementById('modal-wrapper').style.display='block'" class="button_sign">
+  Sign up</button>
+<div id="modal-wrapper" class="modal">
+  <form class="modal-content animate" action="/action_page.php">
+
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('modal-wrapper').style.display='none'" class="close" title="Close PopUp">&times;</span>
+      <img src="images/dockit-logo.png" alt="Avatar" class="avatar">
+      <h1 style="text-align:center">Connectez vous</h1>
+    </div>
+
+    <div class="container">
+      <input type="text" placeholder="Enter Username" name="uname">
+      <input type="password" placeholder="Enter Password" name="psw">
+      <input type="text" placeholder="Enter Username" name="uname">
+      <input type="password" placeholder="Enter Password" name="psw">
+      <button class="submit_button" type="submit">Login</button>
+      <!-- <input type="checkbox" style="margin:26px 30px;"> Remember me
+      <a href="#" style="text-decoration:none; float:right; margin-right:34px; margin-top:26px;">Forgot Password ?</a> -->
+    </div>
+  </form>
+</div>
+</div>
+<div class="formulaire">
+  <button onclick="document.getElementById('wrapper2').style.display='block'" class="button_sign">
+  Sign in</button>
+<div id="wrapper2" class="modal">
+  <form class="modal-content animate" action="/action_page.php">
+
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('wrapper2').style.display='none'" class="close" title="Close PopUp">&times;</span>
+      <img src="images/dockit-logo.png" alt="Avatar" class="avatar">
+      <h1 style="text-align:center">Connectez vous</h1>
+    </div>
+
+    <div class="container">
+      <input type="text" placeholder="Enter Username" name="uname">
+      <input type="password" placeholder="Enter Password" name="psw">
+      <button class="submit_button" type="submit">Login</button>
+      <!-- <input type="checkbox" style="margin:26px 30px;"> Remember me
+      <a href="#" style="text-decoration:none; float:right; margin-right:34px; margin-top:26px;">Forgot Password ?</a> -->
+    </div>
+  </form>
+</div>
+</div>
 <form>
-    <div class="section"><span>1</span>Dimension de votre bateau</div>
+    <div class="section"><span></span>Dimension de votre bateau : </div>
     <div class="inner-wrap">
         <label>Longueur<input type="text" name="field1" /></label>
         <label>Largeur<input type="text"></label>
         <label>Tirant d'eau<input type="text"></label>
    <fieldset>
-     <l>Votre bateau est-il équipé d'une voile ou d'un moteur ?</l>
+     <p>Votre bateau est-il équipé d'une voile ou d'un moteur ?</p>
      <div>
        <input type="checkbox" id="moteur" name="moteur" value="moteur">
        <label for="moteur">Moteur</label>
@@ -40,6 +86,14 @@
        <label for="voile">Voile</label>
      </div>
    </fieldset>
+   <div>
+     <label for="départ">Quand partez vous? :</label>
+     <input type="date" id="bday" name="bday">
+   </div>
+   <div>
+     <label for="arrivé">Jusqu'à quand? :</label>
+     <input type="date" id="bday" name="bday">
+   </div>
  </div>
      <div class="button-section">
       <input type="submit" name="Sign Up" />
@@ -47,31 +101,6 @@
 </form>
 </div>
     <!-- FORM -->
-    <div class="formulaire">
-      <button onclick="document.getElementById('modal-wrapper').style.display='block'" class="button_sign">
-      Sign in</button>
-    <div id="modal-wrapper" class="modal">
-
-      <form class="modal-content animate" action="/action_page.php">
-
-        <div class="imgcontainer">
-          <span onclick="document.getElementById('modal-wrapper').style.display='none'" class="close" title="Close PopUp">&times;</span>
-          <img src="images/dockit-logo.png" alt="Avatar" class="avatar">
-          <h1 style="text-align:center">Connectez vous</h1>
-        </div>
-
-        <div class="container">
-          <input type="text" placeholder="Enter Username" name="uname">
-          <input type="password" placeholder="Enter Password" name="psw">
-          <button class="submit_button" type="submit">Login</button>
-          <!-- <input type="checkbox" style="margin:26px 30px;"> Remember me
-          <a href="#" style="text-decoration:none; float:right; margin-right:34px; margin-top:26px;">Forgot Password ?</a> -->
-        </div>
-
-      </form>
-
-    </div>
-    </div>
 
     <input id="pac-input" class="controls" type="text" placeholder="Ou souhaitez vous aller?">
     <div id="map"></div>

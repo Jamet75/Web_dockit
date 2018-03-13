@@ -5,4 +5,11 @@ window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
+};
+
+var second = document.getElementById('wrapper2');
+window.onclick = function(event) {
+    if (event.target == second) {
+        second.style.display = "none";
+    }
 }
