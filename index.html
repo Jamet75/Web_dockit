@@ -13,7 +13,7 @@
     <header class="header">
       <nav>
             <ul>
-                <li><a href="mon_compte.html">Mon compte</a></li>
+                <li><a href="mon_compte/mon_compte.html">Mon compte</a></li>
             </ul>
         </nav>
       <p> Logo</p>
@@ -72,9 +72,9 @@
 <form>
     <div class="section"><span></span>Dimension de votre bateau : </div>
     <div class="inner-wrap">
-        <label>Longueur<input type="text" name="field1" /></label>
-        <label>Largeur<input type="text"></label>
-        <label>Tirant d'eau<input type="text"></label>
+        <label>Longueur<input type="number" name="field1" placeholder=""/></label>
+        <label>Largeur<input type="number" name="field2" placeholder="" /></label>
+        <label>Tirant d'eau<input type="number"></label>
    <fieldset>
      <p>Votre bateau est-il équipé d'une voile ou d'un moteur ?</p>
      <div>
@@ -88,7 +88,7 @@
    </fieldset>
    <div>
      <label for="départ">Quand partez vous? :</label>
-     <input type="date" id="bday" name="bday">
+     <input type="date" id="date" name="date">
    </div>
    <div>
      <label for="arrivé">Jusqu'à quand? :</label>
