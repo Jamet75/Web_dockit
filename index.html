@@ -8,24 +8,22 @@
     <link rel="stylesheet" type="text/css" href="index.css">
     <link rel="stylesheet" type="text/css" href="form.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <button class="submit_button" onclick="ajaxGet()" type="submit">Valider</button>
     <title>Dockit home</title>
   </head>
   <body>
-
     <header class="header">
       <nav>
             <ul>
                 <li><a href="mon_compte/mon_compte.html">Mon compte</a></li>
             </ul>
         </nav>
-      <p> Logo</p>
+      <img src="images/typo.png" alt="typo" class="typo">
     </header>
 
 <!-- <input type="range" value="15" max="50" min="0" step="5"> -->
 
 <div class="form-style-10">
-<h2>Remplissez ce formulaire pour trouver la place de port adaptée à votre besoin !</h2>
+<h2>    Remplissez ce formulaire pour trouver la place de port adaptée à votre besoin !</h2>
 <div class="formulaire">
   <button onclick="document.getElementById('modal-wrapper').style.display='block'" class="button_sign">
   Inscription</button>
@@ -40,11 +38,12 @@
 
     <div class="container">
       <input type="text" placeholder="Votre Prénom" name="uname" id="firstname">
-      <input type="password" placeholder="Votre nom" name="psw" id="lastname">
+      <input type="text" placeholder="Votre nom" name="psw" id="lastname">
+      <input type="password" placeholder="Votre mot de passe" name="psw" id="password">
       <input type="text" placeholder="Votre adresse email" name="uname" id="login">
-      <input type="password" placeholder="Votre numéro de téléphone" name="psw" id="phone">
-      <input type="password" placeholder="Votre date de naissance" name="psw" id="birthday">
-      <button class="submit_button" onclick="ajaxGet()" type="submit">Valider</button>
+      <input type="text" placeholder="Votre numéro de téléphone" name="psw" id="phone">
+      <input type="text" placeholder="Votre date de naissance" name="psw" id="birthday">
+      <button class="submit_button" onclick="createNewAccount()" type="submit">Valider</button>
       <!-- <input type="checkbox" style="margin:26px 30px;"> Remember me
       <a href="#" style="text-decoration:none; float:right; margin-right:34px; margin-top:26px;">Forgot Password ?</a> -->
     </div>
@@ -56,7 +55,7 @@
   <button onclick="document.getElementById('wrapper2').style.display='block'" class="button_sign">
   Se connecter</button>
 <div id="wrapper2" class="modal">
-  <form class="modal-content animate" action="/action_page.php">
+  <form class="modal-content animate" action="login()">
 
     <div class="imgcontainer">
       <span onclick="document.getElementById('wrapper2').style.display='none'" class="close" title="Close PopUp">&times;</span>
@@ -65,9 +64,9 @@
     </div>
 
     <div class="container">
-      <input type="text" placeholder="Enter Username" name="uname">
-      <input type="password" placeholder="Enter Password" name="psw">
-      <button class="submit_button" type="submit">valider</button>
+      <input type="text" placeholder="Enter Username" name="uname" id="registerLogin">
+      <input type="password" placeholder="Enter Password" name="psw" id="registerPassword">
+      <button class="submit_button" type="submit" onclick="login()">valider</button>
       <!-- <input type="checkbox" style="margin:26px 30px;"> Remember me
       <a href="#" style="text-decoration:none; float:right; margin-right:34px; margin-top:26px;">Forgot Password ?</a> -->
     </div>
@@ -116,23 +115,23 @@
               <img src="images/boat.svg" alt="info bateau" />
                 <h2>1 - Décrivez vos besoins</h2>
                 Renseignez la taille de votre bateau
-                son modele, ainsi que les dates de
+                son modèle, ainsi que les dates de
                 votre voyage.
             </div>
             <div class="col-xs-12 col-sm-4 col-md-4">
               <img src="images/ancre.svg" alt="Choix port" />
                 <h2>2 - Choisissez un port partenaire</h2>
-                Choissiez votre destination, et
-                nous vous selectionerons une
-                place optimisé pour vos besoins
+                Choisissez votre destination, et
+                nous vous sélèctionerons une
+                place optimisée pour vos besoins
                 dans l'un de nos ports partenaire.
             </div>
             <div class="col-xs-12 col-sm-4 col-md-4">
               <img src="images/gouvernail.svg" alt="Soyez libre comme l'air"/>
-                <h2>3 - On s'occupe de tout !</h2>
-                Une fois la réservation effectuer,
+                <h2>3 - Libre comme l'air !</h2>
+                Une fois la réservation éffectué,
                 vous n'avez plus rien à faire.
-                Partez l'esprit libre et profiter
+                Partez l'esprit libre et profitez
                 de vos vacances !
             </div>
         </div>

@@ -1,56 +1,80 @@
-// $(function SubmitForm(){
-//
-//   var $orders = $('#orders');
-//   var $firstname = $('#firstname');
-//   var $lastname = $('#lastname');
-//   var $login = $('#login');
-//   var $phone = $('#phone');
-//   var $birthday = $('#birthday');
-//
-//
-// $.ajax({
-//   type: "GET",
-//   url: 'http://163.5.84.234/api/user/all',
-//
-//   success: function() {
-//     // $.each(orders, function(i, order) {
-//     //   $orders.apprend('<li>name' + order.firstname + ', drink' + order.lastname + '</li>');
-//     // };
-//     alert("ça marche");
-//   },
-//   error: function() {
-//     alert('LOOOOL');
-//   }
-// });
-
-  // $.ajax({
-  //   type: "POST",
-  //   url: 'http://163.5.84.234/api/user/all',
-  //   data, orders,
-  //
-  //   success: function(neworders) {
-  //     $orders.apprend('<li>name' + neworder.name + ', drink' + neworder.drink + '</li>');
-  //   },
-  //   error: function() {
-  //     alert('LOOOOL');
-  //   }
-  // });
-// })
-
-function ajaxGet() {
+function ajaxGet(url, callback) {
    var req = new XMLHttpRequest();
-   req.open("GET", "http://163.5.84.234/api/user/all");
-   req.setRequestHeader('Access-Control-Allow-Origin', '*');
-   req.setRequestHeader('Access-Control-Allow-Headers', '*');
-   req.setRequestHeader('Content-Type', 'application/json');
+   req.open("GET", url);
    req.addEventListener("load", function () {
-       if (req.status >= 200 && req.status < 400) {
-         console.log("IN")
+       if (this.status >= 200 && this.status < 400) {
+         console.log("IN");
+         callback(req.responseText);
+
        } else {
-           console.error(req.status + " " + req.statusText + " " + url);
+          console.error(req.status + " " + req.statusText + " " + url);
        }
    });
    req.addEventListener("error", function () {
+     console.log("Error : " + url);
    });
    req.send(null);
+}
+
+function getUserInfo(id) {
+  ajaxGet("http://163.5.84.234/api/user?id=" + id, function(response) {
+    var rep = JSON.parse(response);
+    console.log(rep.user);
+  });
+}
+
+function ajaxPost(url, callback) {
+   var req = new XMLHttpRequest();
+   req.open("POST", url);
+   req.addEventListener("load", function () {
+       if (this.status >= 200 && this.status < 400) {
+         console.log("IN POST");
+       } else {
+          console.error(req.status + " " + req.statusText + " " + url);
+       }
+   });
+   req.addEventListener("error", function () {
+     console.log("Error : " + url);
+   });
+   req.send(null);
+}
+
+function createNewAccount() {
+  var firstname = document.getElementById("firstname").value;
+  var lastname = document.getElementById("lastname").value;
+  var login = document.getElementById("login").value;
+  var phone = document.getElementById("phone").value;
+  var birthday = document.getElementById("birthday").value;
+  var password = document.getElementById("password").value;
+
+  var url = "http://163.5.84.234/api/user?firstname=" + firstname;
+  url += "&lastname=" + lastname;
+  url += "&login=" + login;
+  url += "&password=" + password;
+  url += "&phone=" + phone;
+  url += "&birthday=" + birthday;
+  url += "&type=boater";
+  ajaxPost(url, function(response) {
+    var req = JSON.parse(response);
+    console.log(req.state);
+  });
+}
+
+function login() {
+  var login = document.getElementById("registerLogin").value;
+  var password = document.getElementById("registerPassword").value;
+
+  var url = "http://163.5.84.234/api/user/login?login=" + login;
+  url += "&password=" + password;
+console.log("login");
+  ajaxPost(url, function(response) {
+    var req = JSON.parse(response);
+    console.log(req.state);
+    if (req.state == "ERROR") {
+
+    }
+    else {
+
+    }
+  });
 }
