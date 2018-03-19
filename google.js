@@ -51,7 +51,7 @@ function initAutocomplete() {
         map: map,
         icon: icon,
         title: place.name,
-        position: place.geometry.location
+        position: place.geometry.location,
       }));
 
       if (place.geometry.viewport) {
