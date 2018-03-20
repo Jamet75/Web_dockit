@@ -74,33 +74,33 @@
 </div>
 </div>
 <form>
-    <div class="section"><span></span>Dimension de votre bateau : </div>
+    <!-- <div class="section"><span></span>Dimension de votre bateau : </div>
     <div class="inner-wrap">
-        <label>Longueur<input type="number" name="field1" placeholder=""/></label>
-        <label>Largeur<input type="number" name="field2" placeholder="" /></label>
-        <label>Tirant d'eau<input type="number"></label>
+        <label>Longueur<input type="number" name="field1" placeholder="" id="Longueur"/></label>
+        <label>Largeur<input type="number" name="field2" placeholder="" id="Largeur"/></label>
+        <label>Tirant d'eau<input type="number" id="Tirant d'eau"></label>
    <fieldset>
      <p>Votre bateau est-il équipé d'une voile ou d'un moteur ?</p>
      <div>
-       <input type="checkbox" id="moteur" name="moteur" value="moteur">
+       <input type="checkbox" id="moteur" name="moteur" value="moteur" id="moteur">
        <label for="moteur">Moteur</label>
      </div>
      <div>
-       <input type="checkbox" id="voile" name="voile" value="voile">
+       <input type="checkbox" id="voile" name="voile" value="voile" id="voile">
        <label for="voile">Voile</label>
      </div>
-   </fieldset>
+   </fieldset> -->
    <div>
      <label for="départ">Quand partez vous? :</label>
-     <input type="date" id="date" name="date">
+     <input type="date" id="date" name="date" id="départ">
    </div>
    <div>
      <label for="arrivé">Jusqu'à quand? :</label>
-     <input type="date" id="bday" name="bday">
+     <input type="date" id="bday" name="bday" id="arrivé">
    </div>
  </div>
      <div class="button-section">
-      <input type="submit" name="Sign Up" />
+      <input type="submit" onclick="send_info" name="Sign Up" />
  </div>
 </form>
 </div>

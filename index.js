@@ -78,3 +78,25 @@ console.log("login");
     }
   });
 }
+
+function send_info() {
+  var Longueur = document.getElementById("Longueur").value;
+  var Largeur = document.getElementById("Largeur").value;
+  var Tirant  = document.getElementById("Tirant d'eau").value;
+  var Largeur = document.getElementById("Largeur").value;
+  var Largeur = document.getElementById("Largeur").value;
+
+  var url = "http://163.5.84.234/api/user/login?login=" + login;
+  url += "&password=" + password;
+console.log("login");
+  ajaxPost(url, function(response) {
+    var req = JSON.parse(response);
+    console.log(req.state);
+    if (req.state == "ERROR") {
+
+    }
+    else {
+
+    }
+  });
+}
