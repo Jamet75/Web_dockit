@@ -113,6 +113,12 @@ p {
   color: #888;
 }
 
+.container_button {
+  background-color: #F8F8F8;
+  position: relative;
+  height: 100px;
+}
+
 @keyframes zoom {
     from {transform: scale(0)}
     to {transform: scale(1)}
