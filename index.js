@@ -73,19 +73,24 @@ function getAllHarbors(map) {
     while (i < harborsList.length) {
       var harbor = harborsList[i];
 
-      console.log(harbor.address);
       var myLatLng = {lat: harbor.latitude, lng: harbor.longitude}; /* PORT MARSEILLE */
-
-      /*var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 4,
-        center: myLatLng
-      });*/
 
       var marker = new google.maps.Marker({
         position: myLatLng,
         map: map,
         title: ''
       });
+      google.maps.event.addListener(marker, 'click', function(harbor) {
+        return function() {
+        console.log(harbor);
+        console.log(harbor.id);
+        console.log(harbor.name);
+        console.log(harbor.email);
+        console.log(harbor.phone);
+        console.log(harbor.city);
+        console.log(harbor.address);
+        console.log(harbor.postal);
+      }}(harbor));
       i += 1;
     }
   });
