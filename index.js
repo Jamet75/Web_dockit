@@ -60,6 +60,44 @@ function createNewAccount() {
   });
 }
 
+function getAllHarbors(map) {
+  var url = "http://163.5.84.234/api/harbor/all";
+  var harborsList = [];
+
+  ajaxGet(url, function(response) {
+    var req = JSON.parse(response);
+
+    harborsList = req.harbors;
+
+    var i = 0;
+    while (i < harborsList.length) {
+      var harbor = harborsList[i];
+
+      var myLatLng = {lat: harbor.latitude, lng: harbor.longitude}; /* PORT MARSEILLE */
+
+      var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        title: ''
+      });
+      google.maps.event.addListener(marker, 'click', function(harbor) {
+        return function() {
+        console.log(harbor);
+        console.log(harbor.id);
+        console.log(harbor.name);
+        console.log(harbor.email);
+        console.log(harbor.phone);
+        console.log(harbor.city);
+        console.log(harbor.address);
+        console.log(harbor.postal);
+      }}(harbor));
+      i += 1;
+    }
+  });
+
+  return harborsList;
+}
+
 function login() {
   var login = document.getElementById("registerLogin").value;
   var password = document.getElementById("registerPassword").value;

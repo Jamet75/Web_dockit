@@ -63,4 +63,15 @@ function initAutocomplete() {
     });
     map.fitBounds(bounds);
   });
+
+
+  var myLatLng_Marseille = {lat: 43.232697, lng: 5.352813}; /* PORT MARSEILLE */
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: myLatLng_Marseille
+  });
+
+  getAllHarbors(map);
+
 }
