@@ -29,6 +29,7 @@ function ajaxPost(url, callback) {
    req.addEventListener("load", function () {
        if (this.status >= 200 && this.status < 400) {
          console.log("IN POST");
+         callback(req.responseText);
        } else {
           console.error(req.status + " " + req.statusText + " " + url);
        }
@@ -109,10 +110,26 @@ console.log("login");
     var req = JSON.parse(response);
     console.log(req.state);
     if (req.state == "ERROR") {
-
+        alert("Erreur d'authentification");
     }
     else {
+        var id = req.user.id;
+        var firstName = req.user.first_name;
+        var lastName = req.user.last_name;
+        var login = req.user.login;
+        var phone = req.user.phone;
+        var type = req.user.type;
+        var status = req.user.status;
+        var createdDate = req.user.createdDate;
 
+        localStorage.setItem("id", req.user.id);
+        localStorage.setItem("firstname", req.user.first_name);
+        localStorage.setItem("lastname", req.user.last_name);
+        localStorage.setItem("login", req.user.login);
+        localStorage.setItem("phone", req.user.phone);
+        localStorage.setItem("type", req.user.type);
+        localStorage.setItem("status", req.user.status);
+        localStorage.setItem("createdDate", req.user.createdDate);
     }
   });
 }

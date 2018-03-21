@@ -16,6 +16,7 @@
 		<script src="https://code.highcharts.com/highcharts.js"></script>
 		<script src="https://code.highcharts.com/modules/data.js"></script>
 		<script src="profil.js"></script>
+		<script src="../mon_compte/mon_compte.js"></script>
 
 		<style>
 			.ad {
@@ -105,7 +106,7 @@
       <script type="text/javascript" src="jquery-1.10.2.min.js"></script>
     </head>
 
-    <body>
+    <body onload="getInfoUser();">
       </div>
 
       <div id="w">
@@ -122,7 +123,7 @@
           </nav>
 
           <section id="bio">
-            <p>Aurélien Gassemann - 21 ans</p>
+            <p id="Username"></p>
             <p>Paris 75016</p>
           </section>
 
