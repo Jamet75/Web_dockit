@@ -1,66 +1,157 @@
-function initAutocomplete() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 47, lng: 5},
-    zoom: 5,
-    mapTypeId: 'roadmap'
+function ajaxGet(url, callback) {
+   var req = new XMLHttpRequest();
+   req.open("GET", url);
+   req.addEventListener("load", function () {
+       if (this.status >= 200 && this.status < 400) {
+         console.log("IN");
+         callback(req.responseText);
+
+       } else {
+          console.error(req.status + " " + req.statusText + " " + url);
+       }
+   });
+   req.addEventListener("error", function () {
+     console.log("Error : " + url);
+   });
+   req.send(null);
+}
+
+function getUserInfo(id) {
+  ajaxGet("http://163.5.84.234/api/user?id=" + id, function(response) {
+    var rep = JSON.parse(response);
+    console.log(rep.user);
   });
+}
 
-  // Create the search box and link it to the UI element.
-  var input = document.getElementById('pac-input');
-  var searchBox = new google.maps.places.SearchBox(input);
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+function ajaxPost(url, callback) {
+   var req = new XMLHttpRequest();
+   req.open("POST", url);
+   req.addEventListener("load", function () {
+       if (this.status >= 200 && this.status < 400) {
+         console.log("IN POST");
+         callback(req.responseText);
+       } else {
+          console.error(req.status + " " + req.statusText + " " + url);
+       }
+   });
+   req.addEventListener("error", function () {
+     console.log("Error : " + url);
+   });
+   req.send(null);
+}
 
-  // Bias the SearchBox results towards current map's viewport.
-  map.addListener('bounds_changed', function() {
-    searchBox.setBounds(map.getBounds());
+function createNewAccount() {
+  var firstname = document.getElementById("firstname").value;
+  var lastname = document.getElementById("lastname").value;
+  var login = document.getElementById("login").value;
+  var phone = document.getElementById("phone").value;
+  var birthday = document.getElementById("birthday").value;
+  var password = document.getElementById("password").value;
+
+  var url = "http://163.5.84.234/api/user?firstname=" + firstname;
+  url += "&lastname=" + lastname;
+  url += "&login=" + login;
+  url += "&password=" + password;
+  url += "&phone=" + phone;
+  url += "&birthday=" + birthday;
+  url += "&type=boater";
+  ajaxPost(url, function(response) {
+    var req = JSON.parse(response);
+    console.log(req.state);
   });
+}
 
-  var markers = [];
-  // Listen for the event fired when the user selects a prediction and retrieve
-  // more details for that place.
-  searchBox.addListener('places_changed', function() {
-    var places = searchBox.getPlaces();
+function getAllHarbors(map) {
+  var url = "http://163.5.84.234/api/harbor/all";
+  var harborsList = [];
 
-    if (places.length == 0) {
-      return;
-    }
+  ajaxGet(url, function(response) {
+    var req = JSON.parse(response);
 
-    // Clear out the old markers.
-    markers.forEach(function(marker) {
-      marker.setMap(null);
-    });
-    markers = [];
+    harborsList = req.harbors;
 
-    // For each place, get the icon, name and location.
-    var bounds = new google.maps.LatLngBounds();
-    places.forEach(function(place) {
-      if (!place.geometry) {
-        console.log("Returned place contains no geometry");
-        return;
-      }
-      var icon = {
-        url: place.icon,
-        size: new google.maps.Size(71, 71),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(17, 34),
-        scaledSize: new google.maps.Size(25, 25)
-      };
+    var i = 0;
+    while (i < harborsList.length) {
+      var harbor = harborsList[i];
 
-      // Create a marker for each place.
-      markers.push(new google.maps.Marker({
+      var myLatLng = {lat: harbor.latitude, lng: harbor.longitude}; /* PORT MARSEILLE */
+
+      var marker = new google.maps.Marker({
+        position: myLatLng,
         map: map,
-        icon: icon,
-        title: place.name,
-        position: place.geometry.location
-      }));
+        title: ''
+      });
+      google.maps.event.addListener(marker, 'click', function(harbor) {
+        return function() {
+        console.log(harbor);
+        console.log(harbor.id);
+        console.log(harbor.name);
+        console.log(harbor.email);
+        console.log(harbor.phone);
+        console.log(harbor.city);
+        console.log(harbor.address);
+        console.log(harbor.postal);
+      }}(harbor));
+      i += 1;
+    }
+  });
 
-      if (place.geometry.viewport) {
-        // Only geocodes have viewport.
-        bounds.union(place.geometry.viewport);
-      } else {
-        bounds.extend(place.geometry.location);
-      }
-    });
-    map.fitBounds(bounds);
+  return harborsList;
+}
+
+function login() {
+  var login = document.getElementById("registerLogin").value;
+  var password = document.getElementById("registerPassword").value;
+
+  var url = "http://163.5.84.234/api/user/login?login=" + login;
+  url += "&password=" + password;
+console.log("login");
+  ajaxPost(url, function(response) {
+    var req = JSON.parse(response);
+    console.log(req.state);
+    if (req.state == "ERROR") {
+        alert("Erreur d'authentification");
+    }
+    else {
+        var id = req.user.id;
+        var firstName = req.user.first_name;
+        var lastName = req.user.last_name;
+        var login = req.user.login;
+        var phone = req.user.phone;
+        var type = req.user.type;
+        var status = req.user.status;
+        var createdDate = req.user.createdDate;
+
+        localStorage.setItem("id", req.user.id);
+        localStorage.setItem("firstname", req.user.first_name);
+        localStorage.setItem("lastname", req.user.last_name);
+        localStorage.setItem("login", req.user.login);
+        localStorage.setItem("phone", req.user.phone);
+        localStorage.setItem("type", req.user.type);
+        localStorage.setItem("status", req.user.status);
+        localStorage.setItem("createdDate", req.user.createdDate);
+    }
+  });
+}
+
+function send_info() {
+  var Longueur = document.getElementById("Longueur").value;
+  var Largeur = document.getElementById("Largeur").value;
+  var Tirant  = document.getElementById("Tirant d'eau").value;
+  var Largeur = document.getElementById("Largeur").value;
+  var Largeur = document.getElementById("Largeur").value;
+
+  var url = "http://163.5.84.234/api/user/login?login=" + login;
+  url += "&password=" + password;
+console.log("login");
+  ajaxPost(url, function(response) {
+    var req = JSON.parse(response);
+    console.log(req.state);
+    if (req.state == "ERROR") {
+
+    }
+    else {
+
+    }
   });
 }
