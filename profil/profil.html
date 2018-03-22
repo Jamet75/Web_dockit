@@ -18,33 +18,6 @@
 		<script src="profil.js"></script>
 		<script src="../mon_compte/mon_compte.js"></script>
 
-		<style>
-			.ad {
-				position: absolute;
-				width: 300px;
-				height: 250px;
-				border: 1px solid #ddd;
-				left: 50%;
-				transform: translateX(-50%);
-				top: 250px;
-				z-index: 10;
-			}
-			.ad .close {
-				position: absolute;
-				font-family: 'ionicons';
-				width: 20px;
-				height: 20px;
-				color: #fff;
-				background-color: #999;
-				font-size: 20px;
-				left: -20px;
-				top: -1px;
-				display: table-cell;
-				vertical-align: middle;
-				cursor: pointer;
-				text-align: center;
-			}
-		</style>
 		<script type="text/javascript">
 			$(function() {
 				$('.close').click(function() {
@@ -118,7 +91,8 @@
             <ul class="clearfix">
               <li><a href="#bio" class="sel">Bio</a></li>
               <li><a href="#friends">Amis</a></li>
-              <li><a href="#settings">Règlages</a></li>
+              <li><a href="#settings">Réglages</a></li>
+							<li><a href="#boat">Mes bâteaux</a></li>
             </ul>
           </nav>
 
@@ -140,29 +114,30 @@
           <section id="settings" class="hidden">
             <p>Données personnelles:</p>
 
-            <p class="setting"><span>Addresse E-mail <img src="../images/edit.png" alt="*Edit*"></span> aureliengassemann@gmail.com</p>
+            <p class="setting"><span>Adresse E-mail <img src="../images/edit.png" alt="*Edit*"></span><p id="Login"></p></p>
 
             <p class="setting"><span>Language <img src="../images/edit.png" alt="*Edit*"></span> Francais(FR)</p>
 
             <p class="setting"><span>Confidentialité <img src="../images/edit.png" alt="*Edit*"></span> Public</p>
 
             <p class="setting"><span>Comptes connectés <img src="../images/edit.png" alt="*Edit*"></span> Aucun</p>
-
-						<!--<p class="setting"><span></span>Dimension de votre bateau : </p>-->
-				    <div class="inner-wrap">
-				        <label><p class="setting">Longueur<input type="number" name="field1" placeholder="" id="Longueur"/><img src="../images/edit.png" alt="*Edit*"></label>
-				        <label><p class="setting">Largeur<input type="number" name="field2" placeholder="" id="Largeur"/><img src="../images/edit.png" alt="*Edit*"></label>
-				        <label><p class="setting">Tirant d'eau<input type="number" id="Tirant d'eau"><img src="../images/edit.png" alt="*Edit*"></label>
-				     <p><p class="setting">Votre bateau est-il équipé d'une voile ou d'un moteur ?</p>
+					</section>
+					<section id="boat" class="hidden">
+						<div class="inner-wrap">
+				        <label><p value="longueur" class="boat">Longueur <input type="number" name="field1" placeholder="" id="longueur"/></label></p>
+				        <label><p class="boat">Largeur <input type="number" name="field2" placeholder="" id="largeur"/></label></p>
+				        <label><p class="boat">Tirant d'eau <input type="number" id="tirant_eau"></label></p>
+								<label><p class="boat">Immatriculation <input type="text" name="field2" placeholder="" id="immatriculation"/></label></p>
+  				      <label><p class="boat">Nom du bateau <input type="text" id="boat_name"></label></p>
+				     <p><p class="boat">Votre bateau est-il équipé d'une voile ou d'un moteur ?</p>
 				     <div>
-				       <input type="checkbox" id="moteur" name="moteur" value="moteur" id="moteur">
-				       <label for="moteur">Moteur</label>
+							 <form id="boat_type">
+				       	<input id="radio_moteur" type="radio" name="moteur" value="motorboat">Moteur</label>
+								<input id="radio_type" type="radio" name="moteur" value="sailboat">Voile</label>
+								</br>
+						 </form>
 				     </div>
-				     <div>
-				       <input type="checkbox" id="voile" name="voile" value="voile" id="voile">
-				       <label for="voile">Voile</label>
-				     </div>
-				   </fieldset>
+						 <button class="submit_button" onclick="createNewBoat()" type="submit">Valider</button>
           </section>
         </div><!-- @end #content -->
       </div><!-- @end #w -->

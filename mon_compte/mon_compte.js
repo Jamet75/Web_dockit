@@ -5,6 +5,7 @@ $(document).ready(function() {
 });
 
 function	getInfoUser() {
-	alert(localStorage.getItem("firstname"));
 	document.getElementById("Username").innerHTML = localStorage.getItem("firstname");
+	document.getElementById("Login").innerHTML = localStorage.getItem("login");
+
 }

@@ -10,6 +10,10 @@ body {
   	-moz-osx-font-smoothing: grayscale;
 }
 
+.submit_button {
+	margin-top: 20px;
+}
+
 .header {
 	position: absolute;
 	width: 100%;
